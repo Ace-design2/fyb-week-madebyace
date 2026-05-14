@@ -76,8 +76,11 @@ export default function SharedModal({
                   width={navigation ? 1280 : 1920}
                   height={navigation ? 853 : 1280}
                   priority
-                  alt="Next.js Conf image"
+                  alt="FYB Week photo"
+                  placeholder="blur"
+                  blurDataURL={currentImage.blurDataUrl}
                   onLoad={() => setLoaded(true)}
+                  unoptimized
                 />
               </motion.div>
             </AnimatePresence>
@@ -197,6 +200,7 @@ export default function SharedModal({
                             : "brightness-50 contrast-125 hover:brightness-75"
                         } h-full transform object-cover transition`}
                         src={url}
+                        unoptimized
                       />
                     </motion.button>
                   ))}
