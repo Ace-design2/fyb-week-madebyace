@@ -10,7 +10,7 @@ export default async function getResults(): Promise<ImageProps[]> {
   console.log("Fetching blobs from Vercel Blob...");
   const { blobs } = await list();
   
-  const sorted = blobs.sort((a, b) => (a.pathname < b.pathname ? 1 : -1));
+  const sorted = blobs.sort((a, b) => (a.pathname > b.pathname ? 1 : -1));
 
   // Map blobs to their pre-generated metadata
   cached = sorted.map((blob, id) => {

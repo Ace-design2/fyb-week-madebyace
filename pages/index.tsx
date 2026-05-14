@@ -77,40 +77,90 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             variants={heroContainerVariants}
             initial="hidden"
             animate="show"
-            className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-black/5 dark:bg-white/10 px-6 pb-16 pt-64 text-center text-black dark:text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0"
+            className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 px-6 pb-10 pt-32 text-center text-black dark:text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-2xl after:shadow-highlight lg:pt-0"
           >
             <motion.div variants={bgVariants} className="absolute inset-0 flex items-center justify-center">
               <Image
                 src="/Image.PNG"
                 alt="FYB Week Background"
                 fill
-                className="object-cover invert dark:invert-0 transition-all duration-300"
+                className="object-cover invert dark:invert-0 transition-all duration-300 opacity-60 dark:opacity-70"
                 priority
               />
-              <span className="absolute left-0 right-0 bottom-0 h-[400px] bg-gradient-to-b from-white/0 via-white to-white dark:from-black/0 dark:via-black dark:to-black transition-colors duration-300"></span>
+              <span className="absolute left-0 right-0 bottom-0 h-[500px] bg-gradient-to-b from-white/0 via-white to-white dark:from-black/0 dark:via-black dark:to-black transition-colors duration-300"></span>
             </motion.div>
-            <motion.h1 variants={itemVariants} className="relative z-10 mt-8 mb-4 text-base font-bold uppercase tracking-widest text-black dark:text-white">
-              Segun's FYB Week
+
+            {/* Event Title */}
+            <motion.h1 variants={itemVariants} className="relative z-10 mt-4 mb-0.5 text-3xl sm:text-4xl font-extrabold tracking-tight text-black dark:text-white">
+              FYB Week '26
             </motion.h1>
-            <motion.p variants={itemVariants} className="relative z-10 max-w-[40ch] text-black dark:text-white sm:max-w-[32ch]">
-              My favorite memories with coursemates during FYB Week in Funaab, April 2026.
+            
+            <motion.p variants={itemVariants} className="relative z-10 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-2">
+              Segun's Official Recap
             </motion.p>
-            <motion.div variants={itemVariants} className="z-10 mt-6 flex gap-4 md:mt-4">
+
+            {/* Event Info Grid */}
+            <motion.div 
+              variants={itemVariants} 
+              className="relative z-10 grid grid-cols-2 gap-3 w-full max-w-xs sm:max-w-sm rounded-xl bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/10 p-3 backdrop-blur-md text-left shadow-sm"
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-black/5 dark:bg-white/10 flex-shrink-0">
+                  <svg className="h-3.5 w-3.5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 leading-tight">Date</p>
+                  <p className="text-[10px] sm:text-xs font-bold text-black dark:text-white truncate">April 20-26, 2026</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-black/5 dark:bg-white/10 flex-shrink-0">
+                  <svg className="h-3.5 w-3.5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[8px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 leading-tight">Venue</p>
+                  <p className="text-[10px] sm:text-xs font-bold text-black dark:text-white truncate">FUNAAB, Abeokuta</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Mini Event Day Timeline Tags */}
+            <motion.div variants={itemVariants} className="relative z-10 flex flex-wrap justify-center gap-1.5 max-w-sm mt-1">
+              {["Back to School", "Cultural Day", "Corporate Day", "Jersey Day"].map((day) => (
+                <span 
+                  key={day} 
+                  className="rounded-md border border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-zinc-600 dark:text-zinc-300"
+                >
+                  {day}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.p variants={itemVariants} className="relative z-10 max-w-[35ch] text-[11px] leading-relaxed text-zinc-600 dark:text-zinc-400 mt-1">
+              Reliving the grand finale with coursemates and celebrating every milestone of our final year.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="z-10 mt-3 flex gap-3">
               <a
-                className="flex items-center gap-2 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3 py-2 text-sm font-semibold text-white dark:text-black transition hover:bg-black/80 dark:hover:bg-white/10 dark:hover:text-white"
-                href="https://twitter.com/segunshowunmi"
+                className="flex items-center gap-1.5 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3.5 py-2 text-xs font-semibold text-white dark:text-black transition hover:scale-105 active:scale-95 hover:bg-black/90 dark:hover:bg-white/90"
+                href="https://twitter.com/madebyacee"
                 target="_blank"
                 rel="noreferrer"
               >
-                <Twitter className="h-4 w-4" /> Twitter
+                <Twitter className="h-3.5 w-3.5" /> Twitter
               </a>
               <a
-                className="flex items-center gap-2 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3 py-2 text-sm font-semibold text-white dark:text-black transition hover:bg-black/80 dark:hover:bg-white/10 dark:hover:text-white"
-                href="https://github.com/segunshowunmi"
+                className="flex items-center gap-1.5 rounded-lg border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/10 px-3.5 py-2 text-xs font-semibold text-black dark:text-white transition hover:scale-105 active:scale-95 hover:bg-black/10 dark:hover:bg-white/20"
+                href="https://github.com/Ace-design-2"
                 target="_blank"
                 rel="noreferrer"
               >
-                <Github className="h-4 w-4" /> GitHub
+                <Github className="h-3.5 w-3.5" /> GitHub
               </a>
             </motion.div>
           </motion.div>
@@ -145,6 +195,16 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                     (max-width: 1536px) 33vw,
                     25vw"
                 />
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="p-3 w-full flex justify-between items-center">
+                    <span className="text-[9px] font-bold tracking-widest text-white uppercase bg-white/15 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20">
+                      Moment #{id + 1}
+                    </span>
+                    <span className="text-[10px] font-bold text-white drop-shadow-md tracking-wide">
+                      VIEW PHOTO
+                    </span>
+                  </div>
+                </div>
               </Link>
             </motion.div>
           ))}
