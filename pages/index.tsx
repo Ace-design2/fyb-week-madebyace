@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import Github from "../components/Icons/Github";
 import Twitter from "../components/Icons/Twitter";
 import Modal from "../components/Modal";
+import ThemeToggle from "../components/ThemeToggle";
 import getResults from "../utils/cachedImages";
 import type { ImageProps } from "../utils/types";
 import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
@@ -61,7 +62,8 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           content="/og-image.png"
         />
       </Head>
-      <main className="mx-auto max-w-[1960px] p-4">
+      <main className="mx-auto max-w-[1960px] p-4 relative">
+        <ThemeToggle />
         {photoId && (
           <Modal
             images={images}
@@ -75,27 +77,27 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             variants={heroContainerVariants}
             initial="hidden"
             animate="show"
-            className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-white/10 px-6 pb-16 pt-64 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0"
+            className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-black/5 dark:bg-white/10 px-6 pb-16 pt-64 text-center text-black dark:text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0"
           >
             <motion.div variants={bgVariants} className="absolute inset-0 flex items-center justify-center">
               <Image
                 src="/Image.PNG"
                 alt="FYB Week Background"
                 fill
-                className="object-cover"
+                className="object-cover invert dark:invert-0 transition-all duration-300"
                 priority
               />
-              <span className="absolute left-0 right-0 bottom-0 h-[400px] bg-gradient-to-b from-black/0 via-black to-black"></span>
+              <span className="absolute left-0 right-0 bottom-0 h-[400px] bg-gradient-to-b from-white/0 via-white to-white dark:from-black/0 dark:via-black dark:to-black transition-colors duration-300"></span>
             </motion.div>
-            <motion.h1 variants={itemVariants} className="relative z-10 mt-8 mb-4 text-base font-bold uppercase tracking-widest text-white">
+            <motion.h1 variants={itemVariants} className="relative z-10 mt-8 mb-4 text-base font-bold uppercase tracking-widest text-black dark:text-white">
               Segun's FYB Week
             </motion.h1>
-            <motion.p variants={itemVariants} className="relative z-10 max-w-[40ch] text-white sm:max-w-[32ch]">
+            <motion.p variants={itemVariants} className="relative z-10 max-w-[40ch] text-black dark:text-white sm:max-w-[32ch]">
               My favorite memories with coursemates during FYB Week in Funaab, April 2026.
             </motion.p>
             <motion.div variants={itemVariants} className="z-10 mt-6 flex gap-4 md:mt-4">
               <a
-                className="flex items-center gap-2 rounded-lg border border-white bg-white px-3 py-2 text-sm font-semibold text-black transition hover:bg-white/10 hover:text-white"
+                className="flex items-center gap-2 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3 py-2 text-sm font-semibold text-white dark:text-black transition hover:bg-black/80 dark:hover:bg-white/10 dark:hover:text-white"
                 href="https://twitter.com/segunshowunmi"
                 target="_blank"
                 rel="noreferrer"
@@ -103,7 +105,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                 <Twitter className="h-4 w-4" /> Twitter
               </a>
               <a
-                className="flex items-center gap-2 rounded-lg border border-white bg-white px-3 py-2 text-sm font-semibold text-black transition hover:bg-white/10 hover:text-white"
+                className="flex items-center gap-2 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3 py-2 text-sm font-semibold text-white dark:text-black transition hover:bg-black/80 dark:hover:bg-white/10 dark:hover:text-white"
                 href="https://github.com/segunshowunmi"
                 target="_blank"
                 rel="noreferrer"

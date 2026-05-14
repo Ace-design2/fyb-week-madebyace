@@ -23,7 +23,7 @@ class MyDocument extends Document {
             content="Memories from our FYB Week in Funaab, April 2026."
           />
         </Head>
-        <body className="bg-black antialiased">
+        <body className="bg-white text-black dark:bg-black dark:text-white antialiased transition-colors duration-300">
           <Main />
           <NextScript />
         </body>
