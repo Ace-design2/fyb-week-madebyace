@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Github from "../components/Icons/Github";
 import Twitter from "../components/Icons/Twitter";
 import Modal from "../components/Modal";
@@ -11,7 +11,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import getResults from "../utils/cachedImages";
 import type { ImageProps } from "../utils/types";
 import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const heroContainerVariants = {
   hidden: { opacity: 0 },
@@ -38,8 +38,16 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   const router = useRouter();
   const { photoId } = router.query;
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
+  const [isLoading, setIsLoading] = useState(true);
 
   const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
@@ -64,6 +72,17 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
       </Head>
       <main className="mx-auto max-w-[1960px] p-4 relative">
         <ThemeToggle />
+        <AnimatePresence>
+          {isLoading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.6, ease: "easeInOut" } }}
+              transition={{ duration: 0.5 }}
+              className="fixed inset-0 z-40 bg-white/60 dark:bg-black/70 backdrop-blur-2xl"
+            />
+          )}
+        </AnimatePresence>
         {photoId && (
           <Modal
             images={images}
@@ -73,11 +92,19 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           />
         )}
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
+          {isLoading && <div className="relative mb-5 h-[629px] w-full" />}
           <motion.div
+            layout
+            layoutId="hero-card"
+            transition={{ layout: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
             variants={heroContainerVariants}
             initial="hidden"
             animate="show"
-            className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 px-6 pb-10 pt-32 text-center text-black dark:text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-2xl after:shadow-highlight lg:pt-0"
+            className={`after:content flex flex-col items-center justify-end gap-4 overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 px-6 pb-10 pt-32 text-center text-black dark:text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-2xl after:shadow-highlight lg:pt-0 ${
+              isLoading
+                ? "fixed inset-0 z-50 m-auto h-[80vh] w-[90vw] max-w-2xl shadow-2xl"
+                : "relative mb-5 h-[629px] w-full"
+            }`}
           >
             <motion.div variants={bgVariants} className="absolute inset-0 flex items-center justify-center">
               <Image
