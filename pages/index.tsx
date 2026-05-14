@@ -145,22 +145,22 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
               Reliving the grand finale with coursemates and celebrating every milestone of our final year.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="z-10 mt-3 flex gap-3">
+            <motion.div variants={itemVariants} className="z-10 mt-6 flex gap-4 md:mt-4">
               <a
-                className="flex items-center gap-1.5 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3.5 py-2 text-xs font-semibold text-white dark:text-black transition hover:scale-105 active:scale-95 hover:bg-black/90 dark:hover:bg-white/90"
+                className="flex items-center gap-2 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3 py-2 text-sm font-semibold text-white dark:text-black transition hover:bg-black/80 dark:hover:bg-white/10 dark:hover:text-white"
                 href="https://twitter.com/madebyacee"
                 target="_blank"
                 rel="noreferrer"
               >
-                <Twitter className="h-3.5 w-3.5" /> Twitter
+                <Twitter className="h-4 w-4" /> Twitter
               </a>
               <a
-                className="flex items-center gap-1.5 rounded-lg border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/10 px-3.5 py-2 text-xs font-semibold text-black dark:text-white transition hover:scale-105 active:scale-95 hover:bg-black/10 dark:hover:bg-white/20"
+                className="flex items-center gap-2 rounded-lg border border-black dark:border-white bg-black dark:bg-white px-3 py-2 text-sm font-semibold text-white dark:text-black transition hover:bg-black/80 dark:hover:bg-white/10 dark:hover:text-white"
                 href="https://github.com/Ace-design-2"
                 target="_blank"
                 rel="noreferrer"
               >
-                <Github className="h-3.5 w-3.5" /> GitHub
+                <Github className="h-4 w-4" /> GitHub
               </a>
             </motion.div>
           </motion.div>
